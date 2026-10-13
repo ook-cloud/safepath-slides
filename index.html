@@ -33,7 +33,7 @@
         <a href="#" class="btn-primary">Бүртгүүлэх</a>
     </nav>
 
-    <!-- ПРЕЗЕНТАЦИЙН 6 СЛАЙД -->
+    <!-- ПРЕЗЕНТАЦИЙН 11 СЛАЙД -->
     <main class="presentation-container">
 
         <!-- СЛАЙД 1: Лого + Хотын зураг -->
@@ -61,11 +61,11 @@
             </div>
         </section>
 
-        <!-- СЛАЙД 3: Манай баг (Яг голд нь төвлөрсөн) -->
+        <!-- СЛАЙД 3: Манай баг -->
         <section class="slide" id="slide-3">
             <div class="container centered-team-container">
                 <div class="section-header center">
-                    <div class="tag">Манай баг</div>
+                    <div class="tag red-dot-tag">Манай баг</div>
                 </div>
                 <div class="team-grid">
                     <div id="team-members-container" class="team-grid-inner"></div>
@@ -73,7 +73,7 @@
             </div>
         </section>
 
-        <!-- СЛАЙД 4: Асуудал (Зөвхөн икон дээр дархад солигдоно) -->
+        <!-- СЛАЙД 4: Асуудал -->
         <section class="slide" id="slide-4">
             <div class="container problem-layout">
                 <div class="q-marks-column">
@@ -85,23 +85,23 @@
                 </div>
 
                 <div class="problems-column">
-                    <div class="tag">АСУУДАЛ</div>
+                    <div class="tag red-dot-tag">АСУУДАЛ</div>
                     
-                    <div class="glass-panel problem-slider-container" id="problem-slider">
-                        <div class="problem-slide active" data-index="0">
-                            <div class="icon-box warning clickable-icon" id="problem-icon" title="Энд дарж дараагийн асуудлыг харна уу">⏰</div>
+                    <div class="glass-panel problem-list-container">
+                        <div class="problem-item" data-step="0">
+                            <div class="icon-box warning animated-icon">⏰</div>
                             <div class="p-text">Алга болсон хүнийг гэр бүл нь хэт оройтож олж мэддэг.</div>
                         </div>
-                        <div class="problem-slide" data-index="1">
-                            <div class="icon-box warning clickable-icon" id="problem-icon" title="Энд дарж дараагийн асуудлыг харна уу">🧭</div>
+                        <div class="problem-item" data-step="1">
+                            <div class="icon-box warning animated-icon">🧭</div>
                             <div class="p-text">Алга болсон хүнийг яг хаанаас хайхаа мэддэггүй.</div>
                         </div>
-                        <div class="problem-slide" data-index="2">
-                            <div class="icon-box warning clickable-icon" id="problem-icon" title="Энд дарж дараагийн асуудлыг харна уу">⏳</div>
+                        <div class="problem-item" data-step="2">
+                            <div class="icon-box warning animated-icon">⏳</div>
                             <div class="p-text">Эрэн сурвалжилж хайхад их цаг хугацаа шаардагддаг.</div>
                         </div>
-                        <div class="problem-slide" data-index="3">
-                            <div class="icon-box warning clickable-icon" id="problem-icon" title="Энд дарж дараагийн асуудлыг харна уу">⚠️</div>
+                        <div class="problem-item" data-step="3">
+                            <div class="icon-box warning animated-icon">⚠️</div>
                             <div class="p-text">Гэнэтийн бэртэл, гэмтлээс урьдчилан сэргийлж чаддаггүй.</div>
                         </div>
                     </div>
@@ -109,55 +109,70 @@
             </div>
         </section>
 
-        <!-- СЛАЙД 5: Шийдэл -->
+        <!-- СЛАЙД 5: ТООН БАРИМТ -->
         <section class="slide" id="slide-5">
+            <div class="container stats-layout">
+                <div class="section-header center">
+                    <div class="tag red-dot-tag">ТООН БАРИМТ</div>
+                    <h2 class="section-title">Сүүлийн оны ҮСХ судалгаагаар</h2>
+                </div>
+                <div class="glass-panel stats-list-container">
+                    <div class="stat-item" data-step="0">
+                        <div class="icon-box primary animated-icon">👶</div>
+                        <div class="p-text">Аутизмтай хүүхэд: <strong>2,300</strong></div>
+                    </div>
+                    <div class="stat-item" data-step="1">
+                        <div class="icon-box warning animated-icon">🔍</div>
+                        <div class="p-text">Алга болсон хүүхэд: <strong>1,380</strong></div>
+                    </div>
+                    <div class="stat-item" data-step="2">
+                        <div class="icon-box primary animated-icon">🧓</div>
+                        <div class="p-text">Өндөр настан (65+): <strong>200,000</strong></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЛАЙД 6: Шийдэл -->
+        <section class="slide" id="slide-6">
             <div class="container solution-layout">
-                <div class="solution-left-column">
-                    <div class="tag">ШИЙДЭЛ</div>
+                <div class="solution-left-column centered-solution-visual">
+                    <div class="tag red-dot-tag">ШИЙДЭЛ</div>
                     
-                    <div class="solution-visual-box">
-                        <div class="neon-light-container">
+                    <div class="solution-visual-box-centered">
+                        <div class="neon-light-container-extra-large">
                             <div class="neon-glow-effect"></div>
-                            <svg class="neon-bulb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z" />
-                                <path d="M12 6a3 3 0 0 0-3 3M12 6a3 3 0 0 1 3 3M12 9v3" stroke-linecap="round"/>
+                            <svg class="neon-bulb-icon-extra-large" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z"></path>
+                                <path d="M12 6a3 3 0 0 0-3 3M12 6a3 3 0 0 1 3 3M12 9v3" stroke-linecap="round"></path>
                             </svg>
                             <div class="sparkle s1"></div>
                             <div class="sparkle s2"></div>
                             <div class="sparkle s3"></div>
                         </div>
-
-                        <div class="solution-person-img-wrapper">
-                            <svg class="solution-person-svg" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5">
-                                <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5 5 0 0 0 8 8c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5"></path>
-                                <path d="M9 18h6"></path>
-                                <path d="M10 22h4"></path>
-                                <circle cx="12" cy="4" r="1"></circle>
-                            </svg>
-                        </div>
                     </div>
                 </div>
 
                 <div class="solutions-column">
-                    <div class="glass-panel solution-slider-container" id="solution-slider">
-                        <div class="solution-slide active" data-index="0">
-                            <div class="icon-box primary clickable-icon" id="solution-icon" title="Энд дарж дараагийн шийдлийг харна уу">🚨</div>
+                    <div class="glass-panel solution-list-container">
+                        <div class="solution-item" data-step="0">
+                            <div class="icon-box primary animated-icon">🚨</div>
                             <div class="p-text">Аюулгүй хүрээнээс гарсан даруй мэдэгдэх.</div>
                         </div>
-                        <div class="solution-slide" data-index="1">
-                            <div class="icon-box primary clickable-icon" id="solution-icon" title="Энд дарж дараагийн шийдлийг харна уу">📢</div>
+                        <div class="solution-item" data-step="1">
+                            <div class="icon-box primary animated-icon">📢</div>
                             <div class="p-text">Гэр бүлийн бүх гишүүдрүү мэдээ өгөх.</div>
                         </div>
-                        <div class="solution-slide" data-index="2">
-                            <div class="icon-box primary clickable-icon" id="solution-icon" title="Энд дарж дараагийн шийдлийг харна уу">⚡</div>
+                        <div class="solution-item" data-step="2">
+                            <div class="icon-box primary animated-icon">⚡</div>
                             <div class="p-text">Хамгийн хурдан очих замыг тооцоолж аль ойрхон байгаа гишүүнд мэдээлэх.</div>
                         </div>
-                        <div class="solution-slide" data-index="3">
-                            <div class="icon-box primary clickable-icon" id="solution-icon" title="Энд дарж дараагийн шийдлийг харна уу">🔋</div>
+                        <div class="solution-item" data-step="3">
+                            <div class="icon-box primary animated-icon">🔋</div>
                             <div class="p-text">Утас унтарсан тохиолдолд өмнөх дата дээр суурьлаж таамгийг гаргах.</div>
                         </div>
-                        <div class="solution-slide" data-index="4">
-                            <div class="icon-box primary clickable-icon" id="solution-icon" title="Энд дарж дараагийн шийдлийг харна уу">🎙️</div>
+                        <div class="solution-item" data-step="4">
+                            <div class="icon-box primary animated-icon">🎙️</div>
                             <div class="p-text">Ойр дотны хүний хоолойгоор нь буцаж харихад чиглүүлэг өгөх.</div>
                         </div>
                     </div>
@@ -165,46 +180,184 @@
             </div>
         </section>
 
-        <!-- СЛАЙД 6: Архитектур -->
-        <section class="slide" id="slide-6">
-            <div class="container">
-                <div class="section-header">
-                    <div class="tag">Архитектур</div>
-                    <h2 class="section-title">Системийн бүтэц ба Технологи</h2>
+        <!-- СЛАЙД 7: ЗОРИЛТ -->
+        <section class="slide" id="slide-7">
+            <div class="container goals-layout">
+                <div class="section-header center">
+                    <div class="tag red-dot-tag">ЗОРИЛТ</div>
+                    <h2 class="section-title">Цаашдын хөгжүүлэлт ба Боломжууд</h2>
                 </div>
-                <div class="arch-grid">
-                    <div class="glass-card tech-card">
-                        <div class="tech-header">
-                            <div class="icon-box primary">📱</div>
-                            <h3>1. Хяналттай төхөөрөмж</h3>
-                        </div>
-                        <ul class="tech-list">
-                            <li><strong>App:</strong> Flutter / React Native</li>
-                            <li><strong>Уналт илрүүлэлт (AI):</strong> 1D CNN / Random Forest</li>
-                            <li><em>TF Lite ашиглан оффлайн ажиллана. 30с тутамд шалгана.</em></li>
-                        </ul>
+                <div class="glass-panel goals-list-container">
+                    <div class="goal-item" data-step="0">
+                        <div class="icon-box primary animated-icon">⌚</div>
+                        <div class="p-text"><strong>Smartwatch дэмжлэг:</strong> Ухаалаг цагтай холбох</div>
                     </div>
-                    <div class="glass-card tech-card">
-                        <div class="tech-header">
-                            <div class="icon-box primary">⚙️</div>
-                            <h3>2. AI Сервер / Backend</h3>
-                        </div>
-                        <ul class="tech-list">
-                            <li><strong>Backend:</strong> Python (FastAPI), PostgreSQL + PostGIS</li>
-                            <li><strong>Гажилтын илрүүлэлт:</strong> DBSCAN / Isolation Forest</li>
-                            <li><strong>Байршлын таамаг:</strong> Markov Model / LSTM</li>
-                        </ul>
+                    <div class="goal-item" data-step="1">
+                        <div class="icon-box warning animated-icon">📲</div>
+                        <div class="p-text"><strong>SMS Alert:</strong> Интернетгүй үед SMS-ээр аюулын дохио илгээх</div>
                     </div>
-                    <div class="glass-card tech-card">
-                        <div class="tech-header">
-                            <div class="icon-box primary">👥</div>
-                            <h3>3. Асрагчийн App</h3>
+                    <div class="goal-item" data-step="2">
+                        <div class="icon-box primary animated-icon">🎨</div>
+                        <div class="p-text"><strong>Хөгжөөнт дүрс:</strong> Анимшион ашиглан гэрлүү нь чиглүүлэх</div>
+                    </div>
+                    <div class="goal-item" data-step="3">
+                        <div class="icon-box warning animated-icon">🔊</div>
+                        <div class="p-text"><strong>Дуут заавар:</strong> Гэр рүүгээ харихад нь дуугаар туслах</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЛАЙД 8: БҮТЭЦ -->
+        <section class="slide" id="slide-8">
+            <div class="container arch-layout-new">
+                <div class="section-header-left">
+                    <div class="tag red-dot-tag">БҮТЭЦ</div>
+                </div>
+
+                <div class="arch-flow-row">
+                    <div class="arch-flow-box">
+                        <span class="arch-icon animated-icon">📱</span> Хяналттай төхөөрөмж
+                    </div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-flow-box">
+                        <span class="arch-icon animated-icon">⚙️</span> AI сервер / Backend
+                    </div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-flow-box">
+                        <span class="arch-icon animated-icon">👥</span> Асрагчийн апп
+                    </div>
+                </div>
+
+                <div class="arch-cards-grid">
+                    <div class="arch-card-new" data-step="0">
+                        <div class="icon-box primary animated-icon">📱</div>
+                        <div class="arch-card-content">
+                            <h4>Апп</h4>
+                            <p>Flutter / React Native (iOS & Android)</p>
                         </div>
-                        <ul class="tech-list">
-                            <li><strong>Үүрэг:</strong> Асран хамгаалагчид зориулсан хяналтын апп</li>
-                            <li><strong>Газрын зураг:</strong> Google Maps API</li>
-                            <li><em>Одоогийн болон таамагласан байршлыг бодит хугацаанд харна.</em></li>
-                        </ul>
+                    </div>
+                    <div class="arch-card-new" data-step="1">
+                        <div class="icon-box primary animated-icon">⚙️</div>
+                        <div class="arch-card-content">
+                            <h4>Backend</h4>
+                            <p>Python (FastAPI), PostgreSQL + PostGIS</p>
+                        </div>
+                    </div>
+                    <div class="arch-card-new" data-step="2">
+                        <div class="icon-box primary animated-icon">🤖</div>
+                        <div class="arch-card-content">
+                            <h4>AI</h4>
+                            <p>scikit-learn, TensorFlow / TF Lite</p>
+                        </div>
+                    </div>
+                    <div class="arch-card-new" data-step="3">
+                        <div class="icon-box primary animated-icon">☁️</div>
+                        <div class="arch-card-content">
+                            <h4>Үүл, Газрын зураг</h4>
+                            <p>Google Maps API, Firebase, Vercel / Render</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЛАЙД 9: АШИГЛАЛТ -->
+        <section class="slide" id="slide-9">
+            <div class="container usage-layout">
+                <div class="section-header">
+                    <div class="tag red-dot-tag">АШИГЛАЛТ</div>
+                </div>
+                <div class="usage-grid">
+                    <div class="usage-column">
+                        <h3 class="usage-section-title">🔒 Хувийн нууц, аюулгүй байдал</h3>
+                        <div class="usage-cards">
+                            <div class="usage-card" data-step="0">
+                                <div class="icon-box primary animated-icon">👁️</div>
+                                <div class="usage-card-body">
+                                    <h4>Ил тод</h4>
+                                    <p>Хоёр талын зөвшөөрөл шаардлагатай (мэдэгдэл үргэлж харагдана).</p>
+                                </div>
+                            </div>
+                            <div class="usage-card" data-step="1">
+                                <div class="icon-box primary animated-icon">🛡️</div>
+                                <div class="usage-card-body">
+                                    <h4>Аюулгүй</h4>
+                                    <p>Мэдээлэл нууцласан (encrypt) байна.</p>
+                                </div>
+                            </div>
+                            <div class="usage-card" data-step="2">
+                                <div class="icon-box warning animated-icon">🗑️</div>
+                                <div class="usage-card-body">
+                                    <h4>Түүх</h4>
+                                    <p>Байршлын түүхийг 30 хоногийн дараа автоматаар устгана.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="usage-column">
+                        <h3 class="usage-section-title">⚡ Батарей, оффлайн</h3>
+                        <div class="usage-cards">
+                            <div class="usage-card" data-step="3">
+                                <div class="icon-box warning animated-icon">🧭</div>
+                                <div class="usage-card-body">
+                                    <h4>Дасан зохичих GPS</h4>
+                                    <p>Хөдөлгөөнгүй үед 2–5 минут, хөдөлсөн үед 15–30 секунд.</p>
+                                </div>
+                            </div>
+                            <div class="usage-card" data-step="4">
+                                <div class="icon-box warning animated-icon">📶</div>
+                                <div class="usage-card-body">
+                                    <h4>Оффлайн</h4>
+                                    <p>Оффлайн үед төхөөрөмжийн сан дотор хадгална.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЛАЙД 10: ТУРШИЛТ (Өөрчлөгдсөн) -->
+        <section class="slide" id="slide-10">
+            <div class="container demo-layout">
+                <div class="section-header center">
+                    <div class="tag red-dot-tag">ТУРШИЛТ</div>
+                </div>
+                <div class="glass-panel demo-list-container">
+                    <div class="demo-item" data-step="0">
+                        <div class="icon-box primary animated-icon">🧪</div>
+                        <div class="p-text"><strong>Модель туршилт:</strong> SisFall/MobiAct + 50 хэвийн бус аяллын симуляци</div>
+                    </div>
+                    <div class="demo-item" data-step="1">
+                        <div class="icon-box warning animated-icon">📱</div>
+                        <div class="p-text"><strong>Симуляци:</strong> Android/iOS эмулятор дээр GPS зам турших</div>
+                    </div>
+                    <div class="demo-item" data-step="2">
+                        <div class="icon-box primary animated-icon">🔍</div>
+                        <div class="p-text"><strong>Талбарын туршилт:</strong> Багийнхан 1 долоо хоног бодит байдалд турших</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЛАЙД 11: ТӨГСГӨЛ (Шинэчилсэн) -->
+        <section class="slide" id="slide-11">
+            <div class="container centered-closing-container">
+                <div class="closing-content-box">
+                    <div class="closing-icon-wrapper animated-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <div class="closing-divider"></div>
+                    <h2 class="closing-title">Анхаарал тавьсанд баярлалаа</h2>
+                    <div class="demo-button-wrapper">
+                        <a href="#" class="demo-action-btn">Демо</a>
                     </div>
                 </div>
             </div>

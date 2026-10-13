@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         teamData.forEach((member) => {
             const memberHTML = `
                 <div class="team-member">
-                    <div class="avatar">
+                    <div class="avatar animated-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                             <circle cx="12" cy="7" r="4"></circle>
@@ -31,27 +31,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 2. СЛАЙД УДИРДАХ ЛОГИК ---
+    // --- 2. СЛАЙД БОЛОН ДОТОРХ МӨРҮҮДИЙГ УДИРДАХ ЛОГИК ---
     const slides = document.querySelectorAll('.slide');
     const logo = document.getElementById('main-logo');
     const navActions = document.getElementById('nav-actions');
     const heroText = document.querySelector('.hero-text-block');
 
     let currentSlide = 0;
+    
+    const problemItems = document.querySelectorAll('.problem-item');
+    const statItems = document.querySelectorAll('.stat-item');
+    const solutionItems = document.querySelectorAll('.solution-item');
+    const goalItems = document.querySelectorAll('.goal-item');
+    const archCardsNew = document.querySelectorAll('.arch-card-new');
+    const usageCards = document.querySelectorAll('.usage-card');
+    const demoItems = document.querySelectorAll('.demo-item');
+    let subStep = 0;
 
-    function goToSlide(index) {
-        if (!slides.length) return;
-        
-        slides[currentSlide].classList.remove('active');
-        
-        if (currentSlide === 3) {
-            slides[3].classList.remove('start-q-anim');
-        }
-
-        currentSlide = index;
-        slides[currentSlide].classList.add('active');
-
-        if (currentSlide === 0) {
+    function updateLogoAndNav(index) {
+        if (index === 0) {
             if (logo) {
                 logo.classList.remove('corner');
                 logo.classList.add('centered');
@@ -66,68 +64,152 @@ document.addEventListener("DOMContentLoaded", () => {
             if(heroText) heroText.classList.add('visible');
             if(navActions) navActions.classList.add('scrolled');
         }
+    }
+
+    function goToSlide(index) {
+        if (!slides.length) return;
+        
+        slides[currentSlide].classList.remove('active');
+        
+        if (currentSlide === 3) {
+            slides[3].classList.remove('start-q-anim');
+        }
+
+        currentSlide = index;
+        slides[currentSlide].classList.add('active');
+        updateLogoAndNav(currentSlide);
 
         if (currentSlide === 3) {
+            subStep = 0;
             setTimeout(() => {
                 slides[3].classList.add('start-q-anim');
             }, 50);
+        } else if (currentSlide === 4 || currentSlide === 5 || currentSlide === 6 || currentSlide === 7 || currentSlide === 8 || currentSlide === 9) {
+            subStep = 0;
         }
     }
 
-    // Дэлгэцийн аль хэсэгт товшихоос шалтгаалж слайд шилжих
-    document.addEventListener('click', (e) => {
-        // Хэрэв асуудал эсвэл шийдлийн слайдерын икон дээр дарсан бол үндсэн слайд солихгүй
-        if (e.target.closest('#problem-icon') || e.target.closest('#solution-icon')) return;
+    function handleNext() {
+        if (currentSlide === 3) {
+            if (subStep < problemItems.length) {
+                problemItems[subStep].classList.add('visible');
+                subStep++;
+                return;
+            }
+        }
         
+        if (currentSlide === 4) {
+            if (subStep < statItems.length) {
+                statItems[subStep].classList.add('visible');
+                subStep++;
+                return;
+            }
+        }
+
+        if (currentSlide === 5) {
+            if (subStep < solutionItems.length) {
+                solutionItems[subStep].classList.add('visible');
+                subStep++;
+                return;
+            }
+        }
+
+        if (currentSlide === 6) {
+            if (subStep < goalItems.length) {
+                goalItems[subStep].classList.add('visible');
+                subStep++;
+                return;
+            }
+        }
+
+        if (currentSlide === 7) {
+            if (subStep < archCardsNew.length) {
+                archCardsNew[subStep].classList.add('visible');
+                subStep++;
+                return;
+            }
+        }
+
+        if (currentSlide === 8) {
+            if (subStep < usageCards.length) {
+                usageCards[subStep].classList.add('visible');
+                subStep++;
+                return;
+            }
+        }
+
+        if (currentSlide === 9) {
+            if (subStep < demoItems.length) {
+                demoItems[subStep].classList.add('visible');
+                subStep++;
+                return;
+            }
+        }
+
+        let newIndex = (currentSlide + 1) % slides.length;
+        goToSlide(newIndex);
+    }
+
+    function handlePrev() {
+        if (currentSlide === 3 && subStep > 0) {
+            subStep--;
+            problemItems[subStep].classList.remove('visible');
+            return;
+        }
+        if (currentSlide === 4 && subStep > 0) {
+            subStep--;
+            statItems[subStep].classList.remove('visible');
+            return;
+        }
+        if (currentSlide === 5 && subStep > 0) {
+            subStep--;
+            solutionItems[subStep].classList.remove('visible');
+            return;
+        }
+        if (currentSlide === 6 && subStep > 0) {
+            subStep--;
+            goalItems[subStep].classList.remove('visible');
+            return;
+        }
+        if (currentSlide === 7 && subStep > 0) {
+            subStep--;
+            archCardsNew[subStep].classList.remove('visible');
+            return;
+        }
+        if (currentSlide === 8 && subStep > 0) {
+            subStep--;
+            usageCards[subStep].classList.remove('visible');
+            return;
+        }
+        if (currentSlide === 9 && subStep > 0) {
+            subStep--;
+            demoItems[subStep].classList.remove('visible');
+            return;
+        }
+
+        let newIndex = (currentSlide - 1 + slides.length) % slides.length;
+        goToSlide(newIndex);
+    }
+
+    document.addEventListener('click', (e) => {
         const screenWidth = window.innerWidth;
         const clickX = e.clientX;
 
         if (clickX > screenWidth / 2) {
-            let newIndex = (currentSlide + 1) % slides.length;
-            goToSlide(newIndex);
+            handleNext();
         } else {
-            let newIndex = (currentSlide - 1 + slides.length) % slides.length;
-            goToSlide(newIndex);
+            handlePrev();
         }
     });
 
-    // Гарны товчлууруудаар удирдах
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight' || e.key === ' ') {
-            let newIndex = (currentSlide + 1) % slides.length;
-            goToSlide(newIndex);
+            e.preventDefault();
+            handleNext();
         }
         if (e.key === 'ArrowLeft') {
-            let newIndex = (currentSlide - 1 + slides.length) % slides.length;
-            goToSlide(newIndex);
+            e.preventDefault();
+            handlePrev();
         }
-    });
-
-    // --- 3. ЗӨВХӨН ИКОН ДЭЭР ДАРХАД АСУУДАЛ СОЛИГДОХ ЛОГИК ---
-    const problemIcons = document.querySelectorAll('#problem-icon');
-    const problemSlides = document.querySelectorAll('.problem-slide');
-    let currentProblem = 0;
-
-    problemIcons.forEach(icon => {
-        icon.addEventListener('click', (e) => {
-            e.stopPropagation(); // Слайд шилжих функцийг зогсооно
-            problemSlides[currentProblem].classList.remove('active');
-            currentProblem = (currentProblem + 1) % problemSlides.length;
-            problemSlides[currentProblem].classList.add('active');
-        });
-    });
-
-    // --- 4. ЗӨВХӨН ИКОН ДЭЭР ДАРХАД ШИЙДЭЛ СОЛИГДОХ ЛОГИК ---
-    const solutionIcons = document.querySelectorAll('#solution-icon');
-    const solutionSlides = document.querySelectorAll('.solution-slide');
-    let currentSolution = 0;
-
-    solutionIcons.forEach(icon => {
-        icon.addEventListener('click', (e) => {
-            e.stopPropagation(); // Слайд шилжих функцийг зогсооно
-            solutionSlides[currentSolution].classList.remove('active');
-            currentSolution = (currentSolution + 1) % solutionSlides.length;
-            solutionSlides[currentSolution].classList.add('active');
-        });
     });
 });
