@@ -74,9 +74,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Дэлгэцийн аль хэсэгт товшихоос шалтгаалж слайд шилжих (Слайдер доторх товшилтыг слайд солихгүгээр тусад нь салгав)
+    // Дэлгэцийн аль хэсэгт товшихоос шалтгаалж слайд шилжих
     document.addEventListener('click', (e) => {
-        if (e.target.closest('#problem-slider') || e.target.closest('#solution-slider')) return;
+        // Хэрэв асуудал эсвэл шийдлийн слайдерын икон дээр дарсан бол үндсэн слайд солихгүй
+        if (e.target.closest('#problem-icon') || e.target.closest('#solution-icon')) return;
         
         const screenWidth = window.innerWidth;
         const clickX = e.clientX;
@@ -102,31 +103,31 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // --- 3. АСУУДАЛ СЛАЙДЕРЫН ЛОГИК (Бүрэн засварлагдсан) ---
-    const problemSlider = document.getElementById('problem-slider');
+    // --- 3. ЗӨВХӨН ИКОН ДЭЭР ДАРХАД АСУУДАЛ СОЛИГДОХ ЛОГИК ---
+    const problemIcons = document.querySelectorAll('#problem-icon');
     const problemSlides = document.querySelectorAll('.problem-slide');
     let currentProblem = 0;
 
-    if (problemSlider && problemSlides.length > 0) {
-        problemSlider.addEventListener('click', (e) => {
-            e.stopPropagation(); // Үндсэн слайд солигдох функцийг хааж байна
+    problemIcons.forEach(icon => {
+        icon.addEventListener('click', (e) => {
+            e.stopPropagation(); // Слайд шилжих функцийг зогсооно
             problemSlides[currentProblem].classList.remove('active');
             currentProblem = (currentProblem + 1) % problemSlides.length;
             problemSlides[currentProblem].classList.add('active');
         });
-    }
+    });
 
-    // --- 4. ШИЙДЭЛ СЛАЙДЕРЫН ЛОГИК ---
-    const solutionSlider = document.getElementById('solution-slider');
+    // --- 4. ЗӨВХӨН ИКОН ДЭЭР ДАРХАД ШИЙДЭЛ СОЛИГДОХ ЛОГИК ---
+    const solutionIcons = document.querySelectorAll('#solution-icon');
     const solutionSlides = document.querySelectorAll('.solution-slide');
     let currentSolution = 0;
 
-    if (solutionSlider && solutionSlides.length > 0) {
-        solutionSlider.addEventListener('click', (e) => {
-            e.stopPropagation(); // Үндсэн слайд солигдох функцийг хааж байна
+    solutionIcons.forEach(icon => {
+        icon.addEventListener('click', (e) => {
+            e.stopPropagation(); // Слайд шилжих функцийг зогсооно
             solutionSlides[currentSolution].classList.remove('active');
             currentSolution = (currentSolution + 1) % solutionSlides.length;
             solutionSlides[currentSolution].classList.add('active');
         });
-    }
+    });
 });
