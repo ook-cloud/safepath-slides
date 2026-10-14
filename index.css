@@ -890,7 +890,7 @@ html {
   font-size: 24px;
 }
 
-/* ТӨГСГӨЛ (Слайд 11) */
+/* ТӨГСГӨЛ (Слайд 11) - Давхарлаж холилдсон 5 дүрстэй хэсэг */
 .centered-closing-container {
   display: flex;
   justify-content: center;
@@ -905,38 +905,48 @@ html {
   text-align: center;
 }
 
-.closing-icons-row {
+.closing-icons-cluster {
   display: flex;
-  gap: 20px;
-  margin-bottom: 25px;
   align-items: center;
   justify-content: center;
+  margin-bottom: 30px;
 }
-.closing-icon-wrapper {
+.closing-icons-cluster .closing-icon-wrapper {
   width: 75px;
   height: 75px;
   border-radius: 50%;
-  background: rgba(16, 185, 129, 0.1);
-  border: 2px solid rgba(16, 185, 129, 0.3);
+  background: rgba(3, 7, 18, 0.9);
+  border: 2px solid rgba(16, 185, 129, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--primary);
+  margin-left: -20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
 }
-.closing-icon-wrapper.large-center-icon {
-  width: 95px;
-  height: 95px;
+.closing-icons-cluster .closing-icon-wrapper:first-child {
+  margin-left: 0;
+}
+.closing-icons-cluster .closing-icon-wrapper.large-center-icon {
+  width: 90px;
+  height: 90px;
   border-color: var(--primary);
-  background: rgba(16, 185, 129, 0.2);
-  box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
+  background: rgba(16, 185, 129, 0.25);
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.5);
+  z-index: 10;
 }
 .closing-icon-wrapper svg {
   width: 38px;
   height: 38px;
 }
 .closing-icon-wrapper.large-center-icon svg {
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
+}
+.closing-icons-cluster .closing-icon-wrapper:hover {
+  transform: translateY(-5px);
+  z-index: 20;
 }
 
 .closing-divider {
