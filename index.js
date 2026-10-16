@@ -64,7 +64,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- 4. ДҮРС ТЭМДЭГ (vendor/lucide.min.js) ---
   if (window.lucide) lucide.createIcons();
 
-  // --- 5. 1920×1080 ТАЙЗЫГ ДЭЛГЭЦЭНД ТААРУУЛАХ ---
+  // --- 5. ТУРШИЛТЫН ВИДЕО: файл олдохгүй бол хаана хадгалахыг харуулна ---
+  document.querySelectorAll(".slide-video").forEach((video) => {
+    const markMissing = () => video.parentElement.classList.add("is-missing");
+    video.addEventListener("error", markMissing);
+    if (video.error) markMissing();
+  });
+
+  // --- 6. 1920×1080 ТАЙЗЫГ ДЭЛГЭЦЭНД ТААРУУЛАХ ---
   const stage = document.querySelector(".stage");
   function fitStage() {
     const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
@@ -73,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", fitStage);
   fitStage();
 
-  // --- 6. СЛАЙД БОЛОН ДОТОРХ МӨРҮҮДИЙГ УДИРДАХ ЛОГИК ---
+  // --- 7. СЛАЙД БОЛОН ДОТОРХ МӨРҮҮДИЙГ УДИРДАХ ЛОГИК ---
   const slides = document.querySelectorAll(".slide");
   const logo = document.getElementById("main-logo");
   const counter = document.getElementById("slide-counter");
@@ -91,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function goToSlide(index, revealAll = false) {
     slides[currentSlide].classList.remove("active", "entered");
+    slides[currentSlide].querySelectorAll("video").forEach((v) => v.pause());
     currentSlide = index;
 
     const slide = slides[currentSlide];
@@ -99,6 +107,8 @@ document.addEventListener("DOMContentLoaded", () => {
     subStep = revealAll ? steps.length : 0;
 
     slide.classList.add("active");
+    // Видеотой слайд руу ороход тоглуулна (хөтөч зөвшөөрөхгүй бол ▶ товчоор)
+    slide.querySelectorAll("video").forEach((v) => v.play().catch(() => {}));
     // Дараагийн frame-д нэмснээр орох анимаци (асуултын тэмдэг, утас) дахин эхэлнэ
     requestAnimationFrame(() =>
       requestAnimationFrame(() => {
@@ -136,8 +146,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   document.addEventListener("click", (e) => {
-    // Демо товч зэрэг холбоос дээр дарахад слайд солигдохгүй
-    if (e.target.closest("a, button")) return;
+    // Холбоос, товч, видео дээр дарахад слайд солигдохгүй
+    if (e.target.closest("a, button, video")) return;
 
     if (e.clientX > window.innerWidth / 2) {
       handleNext();
