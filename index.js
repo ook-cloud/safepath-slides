@@ -64,11 +64,99 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- 4. ДҮРС ТЭМДЭГ (vendor/lucide.min.js) ---
   if (window.lucide) lucide.createIcons();
 
-  // --- 5. ТУРШИЛТЫН ВИДЕО: файл олдохгүй бол хаана хадгалахыг харуулна ---
-  document.querySelectorAll(".slide-video").forEach((video) => {
+  // --- 5. ТУРШИЛТ: нэг товчоор видео ба зургийн цувралыг зэрэг тоглуулна ---
+  // Зургийн data-at нь видеоны хэддэх секундэд тухайн зураг гарахыг заана
+  const players = [...document.querySelectorAll(".test-phones")].map((root) => {
+    const video = root.querySelector(".slide-video");
+    const frames = [...root.querySelectorAll(".phone-slideshow img")];
+    const cues = frames.map((f) => Number(f.dataset.at) || 0);
+    const dotsBox = root.querySelector(".slideshow-dots");
+    const dots = frames.map(() => dotsBox.appendChild(document.createElement("span")));
+    const button = root.querySelector(".sync-play");
+    const resetButton = root.querySelector(".sync-reset");
+    const progress = root.querySelector(".video-progress span");
+    let shown = -1;
+    let looping = false;
+
+    const showFrame = (i) => {
+      if (i === shown) return;
+      shown = i;
+      frames.forEach((f, k) => f.classList.toggle("is-active", k === i));
+      dots.forEach((d, k) => d.classList.toggle("is-active", k === i));
+    };
+    // Видеоны одоогийн секундэд тохирох зургийг харуулна
+    const sync = () => {
+      const t = video.currentTime;
+      let i = 0;
+      while (i + 1 < cues.length && cues[i + 1] <= t) i++;
+      showFrame(i);
+      progress.style.transform = `scaleX(${video.duration ? t / video.duration : 0})`;
+    };
+    const loop = () => {
+      sync();
+      looping = !video.paused;
+      if (looping) requestAnimationFrame(loop);
+    };
+    const setState = (state) => {
+      button.dataset.state = state;
+      button.setAttribute(
+        "aria-label",
+        state === "playing" ? "Зогсоох" : "Хоёр утсыг зэрэг тоглуулах",
+      );
+    };
+    const toggle = () => {
+      if (video.paused) {
+        if (video.ended) video.currentTime = 0;
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    };
+    // Хоёр утсыг эхэнд нь буцаана; reload=true үед гацсан/алдаатай видеог дахин ачаална
+    const reset = (reload = false) => {
+      video.pause();
+      if (reload && (video.error || video.readyState < 2)) video.load();
+      video.currentTime = 0;
+      setState("paused");
+      sync();
+    };
+
+    video.addEventListener("play", () => {
+      setState("playing");
+      if (!looping) loop();
+    });
+    video.addEventListener("pause", () => setState(video.ended ? "ended" : "paused"));
+    video.addEventListener("ended", () => setState("ended"));
+    video.addEventListener("seeked", sync);
+    video.addEventListener("loadedmetadata", sync);
+    button.addEventListener("click", toggle);
+    // ↺ товч: эхнээс нь дахин тоглуулна
+    resetButton.addEventListener("click", () => {
+      reset(true);
+      video.play().catch(() => {});
+    });
+    // Аль ч утсан дээр дарахад тоглуулах/зогсоох (слайд солигдохгүй)
+    root.addEventListener("click", (e) => {
+      if (e.target.closest(".phone-frame")) toggle();
+    });
+
+    // Видео файл олдохгүй бол хаана хадгалахыг харуулна
     const markMissing = () => video.parentElement.classList.add("is-missing");
     video.addEventListener("error", markMissing);
+    video.addEventListener("loadeddata", () => video.parentElement.classList.remove("is-missing"));
     if (video.error) markMissing();
+
+    showFrame(0);
+    return {
+      root,
+      reset,
+      // Clicker-ийн "дараах": видео эхлээгүй бол эхлээд хоёр утсыг тоглуулна
+      startIfIdle() {
+        if (!video.paused || video.currentTime > 0 || video.error) return false;
+        video.play().catch(() => {});
+        return true;
+      },
+    };
   });
 
   // --- 6. 1920×1080 ТАЙЗЫГ ДЭЛГЭЦЭНД ТААРУУЛАХ ---
@@ -107,8 +195,10 @@ document.addEventListener("DOMContentLoaded", () => {
     subStep = revealAll ? steps.length : 0;
 
     slide.classList.add("active");
-    // Видеотой слайд руу ороход тоглуулна (хөтөч зөвшөөрөхгүй бол ▶ товчоор)
-    slide.querySelectorAll("video").forEach((v) => v.play().catch(() => {}));
+    // Туршилтын слайд руу ороход хоёр утас эхэндээ буцаж, ▶ товчийг хүлээнэ
+    players.forEach((p) => {
+      if (slide.contains(p.root)) p.reset();
+    });
     // Дараагийн frame-д нэмснээр орох анимаци (асуултын тэмдэг, утас) дахин эхэлнэ
     requestAnimationFrame(() =>
       requestAnimationFrame(() => {
@@ -125,6 +215,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function handleNext() {
+    // Туршилтын слайд: видео эхлээгүй бол эхлээд хоёр утсыг тоглуулна
+    const player = players.find((p) => slides[currentSlide].contains(p.root));
+    if (player && player.startIfIdle()) return;
+
     const steps = stepsOf(currentSlide);
     if (subStep < steps.length) {
       steps[subStep].classList.add("visible");
@@ -146,8 +240,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   document.addEventListener("click", (e) => {
-    // Холбоос, товч, видео дээр дарахад слайд солигдохгүй
-    if (e.target.closest("a, button, video")) return;
+    // Холбоос, товч, туршилтын утаснууд дээр дарахад слайд солигдохгүй
+    if (e.target.closest("a, button, video, .test-phones")) return;
 
     if (e.clientX > window.innerWidth / 2) {
       handleNext();

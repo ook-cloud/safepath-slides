@@ -1075,34 +1075,181 @@ html {
   color: rgba(163, 179, 173, 0.75);
 }
 
-/* ТУРШИЛТ (Слайд 13): видео өөрийн харьцаагаараа (хэвтээ ч, босоо ч) */
-.video-frame {
+/* ТУРШИЛТ (Слайд 13): ижил утасны хүрээтэй зургийн цуврал ба видео */
+.test-phones {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 72px;
+}
+/* Хоёр утсыг зэрэг тоглуулах товч (утаснуудын дунд), доор нь жижиг ↺ товч */
+.sync-controls {
+  position: relative;
+  align-self: center;
+  margin-top: -26px; /* доорх цэгүүдийг тооцохгүйгээр утасны голд */
+}
+.sync-play {
   display: grid;
   place-items: center;
+  width: 96px;
+  height: 96px;
+  border: none;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--bg-dark);
+  cursor: pointer;
+  box-shadow:
+    0 0 0 10px rgba(16, 185, 129, 0.12),
+    0 16px 36px rgba(16, 185, 129, 0.35);
+  transition: transform 0.2s ease;
 }
-.slide-video {
+.sync-play:hover {
+  transform: scale(1.06);
+}
+.sync-play:focus-visible {
+  outline: 3px solid var(--text-main);
+  outline-offset: 6px;
+}
+.sync-play svg {
+  display: none;
+  width: 40px;
+  height: 40px;
+}
+.sync-play[data-state="paused"] .icon-play,
+.sync-play[data-state="ended"] .icon-play,
+.sync-play[data-state="playing"] .icon-pause {
   display: block;
-  width: auto;
-  height: 700px;
-  max-width: 1400px;
-  border-radius: 24px;
-  border: 1px solid var(--card-border);
+}
+.sync-reset {
+  position: absolute;
+  top: calc(100% + 24px);
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 50%;
+  background: rgba(8, 28, 23, 0.9);
+  color: var(--primary-soft);
+  cursor: pointer;
+  transform: translateX(-50%);
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+.sync-reset:hover {
+  background: rgba(16, 185, 129, 0.15);
+}
+.sync-reset:active {
+  transform: translateX(-50%) rotate(-45deg);
+}
+.sync-reset:focus-visible {
+  outline: 3px solid var(--text-main);
+  outline-offset: 4px;
+}
+.sync-reset svg {
+  width: 22px;
+  height: 22px;
+}
+.sync-play .icon-play,
+.sync-play .icon-pause {
+  fill: currentColor;
+}
+.sync-play .icon-play {
+  margin-left: 5px; /* гурвалжныг нүдэнд голлуулна */
+}
+.video-progress {
+  width: 160px;
+  height: 4px;
+  margin-top: 2px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.15);
+}
+.video-progress span {
+  display: block;
+  height: 100%;
+  background: var(--primary-soft);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.test-phone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+.phone-frame {
+  padding: 12px;
+  border-radius: 60px;
+  background: #0b0f10;
+  box-shadow:
+    inset 0 0 0 2px #2a3236,
+    0 0 0 1px rgba(16, 185, 129, 0.15),
+    0 30px 60px rgba(0, 0, 0, 0.55);
+}
+.phone-screen {
+  position: relative;
+  width: 304px;
+  aspect-ratio: 1290 / 2796;
+  overflow: hidden;
+  border-radius: 48px;
   background: #000;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+.phone-slideshow img,
+.phone-screen .slide-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.phone-slideshow img {
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.phone-slideshow img.is-active {
+  opacity: 1;
+}
+.slideshow-dots {
+  display: flex;
+  gap: 10px;
+}
+.slideshow-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+.slideshow-dots span.is-active {
+  background: var(--primary-soft);
+  transform: scale(1.3);
+}
+.phone-screen .slide-video {
+  object-fit: contain;
+  background: #000;
 }
 .video-missing {
+  position: absolute;
+  inset: 0;
   display: none;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 14px;
-  padding: 28px 36px;
-  border-radius: 24px;
-  border: 1px dashed rgba(16, 185, 129, 0.4);
-  font-size: 22px;
+  padding: 32px;
+  text-align: center;
+  font-size: 17px;
+  line-height: 1.5;
   color: var(--text-muted);
 }
 .video-missing svg {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   color: var(--primary-soft);
 }
 .video-missing code {

@@ -479,23 +479,68 @@
           </p>
         </section>
 
-        <!-- СЛАЙД 13: ТУРШИЛТ (видео: videos/turshilt.mp4, слайд руу ороход тоглоно) -->
+        <!-- СЛАЙД 13: ТУРШИЛТ — ▶ товч (эсвэл "дараах") дарахад хоёр утас зэрэг тоглоно:
+             баруунд хүүхдийн видео (videos/litgut.mp4), зүүнд асран хамгаалагчийн зургууд.
+             Зураг бүрийн data-at = видеоны хэддэх секундэд тэр зураг гарах -->
+
         <section class="slide" id="slide-13">
           <div class="slide-header center">
             <div class="tag red-dot-tag">ТУРШИЛТ</div>
           </div>
-          <div class="video-frame">
-            <video
-              class="slide-video"
-              src="videos/turshilt.mp4"
-              controls
-              playsinline
-              preload="metadata"
-            ></video>
-            <p class="video-missing">
-              <i data-lucide="video"></i>
-              <span>Видео файлаа <code>videos/turshilt.mp4</code> нэрээр хадгална уу</span>
-            </p>
+          <div class="test-phones">
+            <figure class="test-phone">
+              <div class="phone-frame">
+                <div class="phone-screen phone-slideshow">
+                  <img class="is-active" data-at="0" src="test/shot-1.webp" alt="Хүүхэд аюулгүй бүсэд байна" />
+                  <img data-at="3" src="test/shot-2.webp" alt="Хүүхэд бүсээс гарлаа" />
+                  <img data-at="10.5" src="test/shot-3.webp" alt="Хүүхэд холдож байна" />
+                  <img data-at="23" src="test/shot-4.webp" alt="Хүүхдийн байршил, орчны зураг" />
+                  <img data-at="26.5" src="test/shot-5.webp" alt="Хүүхэд буцаж байна" />
+                  <img data-at="30.75" src="test/shot-6.webp" alt="Хүүхэд бүсэд буцаж ирлээ" />
+                  <img data-at="32.25" src="test/shot-7.webp" alt="Хүүхэд аюулгүй бүсэд байна" />
+                </div>
+              </div>
+              <div class="slideshow-dots" aria-hidden="true"></div>
+            </figure>
+
+            <div class="sync-controls">
+              <button
+                class="sync-play"
+                type="button"
+                data-state="paused"
+                aria-label="Хоёр утсыг зэрэг тоглуулах"
+              >
+                <i data-lucide="play" class="icon-play"></i>
+                <i data-lucide="pause" class="icon-pause"></i>
+              </button>
+              <!-- Ямар нэг юм гацвал: хоёр утсыг эхэнд нь буцааж дахин тоглуулна -->
+              <button
+                class="sync-reset"
+                type="button"
+                aria-label="Эхнээс нь дахин тоглуулах"
+                title="Эхнээс нь"
+              >
+                <i data-lucide="rotate-ccw"></i>
+              </button>
+            </div>
+
+            <figure class="test-phone">
+              <div class="phone-frame">
+                <div class="phone-screen video-frame">
+                  <video
+                    class="slide-video"
+                    src="videos/litgut.mp4"
+                    playsinline
+                    preload="auto"
+                  ></video>
+                  <p class="video-missing">
+                    <i data-lucide="video"></i>
+                    <span>Видео файлаа <code>videos/litgut.mp4</code> нэрээр хадгална уу</span>
+                  </p>
+                </div>
+              </div>
+              <div class="video-progress" aria-hidden="true"><span></span></div>
+            </figure>
           </div>
         </section>
 
